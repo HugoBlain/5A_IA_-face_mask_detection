@@ -48,6 +48,18 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 
+# pour les FPS :
+# font
+font = cv2.FONT_HERSHEY_SIMPLEX
+# org
+org = (50, 50)
+# fontScale
+fontScale = 1
+# Blue color in BGR
+color = (0, 0, 0)
+# Line thickness of 2 px
+thickness = 1
+
 
 @torch.no_grad()
 def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
@@ -180,9 +192,15 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             # Print time (inference-only)
             LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s)')
 
+
             # Stream results
             im0 = annotator.result()
             if view_img:
+                # calcule fps
+                FPS = 1/(t3-t2)
+                # Using cv2.putText() method
+                im0 = cv2.putText(im0, "FPS : "+str(FPS)[:5], org, font, 
+                                fontScale, color, thickness, cv2.LINE_AA)
                 cv2.imshow(str(p), im0)
                 cv2.waitKey(1)  # 1 millisecond
 
