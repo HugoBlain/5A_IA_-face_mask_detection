@@ -6,6 +6,7 @@ L’objectif de ce projet est de permettre aux étudiants de voir l’ensemble d
 Tous les résultats des entrainements ou des traitements sont dans le repertoire "yolov5/runs".
 
 # Installation :
+L'environnement doit avoir Python>=3.6.0 incluant PyTorch>=1.7.
 ```
 git clone https://github.com/HugoBlain/5A_IA_-face_mask_detection
 cd yolov5
